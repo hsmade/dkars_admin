@@ -10,11 +10,12 @@
 #########################################################################
 import logging
 import json
+import os
 logger = logging.getLogger('controller')
-config = json.loads(open('logging.json').read())
+logging_conf = os.path.join(os.path.dirname(os.path.abspath(__file__)), '..', 'logging.json')
+config = json.loads(open(logging_conf).read())
 logging.config.dictConfig(config)
-import sh
-error = ''
+logger.debug('default loaded')
 
 
 def user():
@@ -72,14 +73,11 @@ def index():
     """
     Exposes the mail forwards
     """
-    global error
-    error = 'leeg'
-
     form = SQLFORM.smartgrid(db.t_mail_forwards,
                              onupdate=update_mail_forwards,
                              oncreate=update_mail_forwards,
                              ondelete=update_mail_forwards,
                              )
     # TODO: update_mail_forwards modifies error, but it's not seen
-    logger.debug('Error before return: {}'.format(error))
-    return dict(form=form, error=error)
+    # logger.debug('Error before return: {}'.format(get_error()))
+    return dict(form=form, error=session.mail_forward_error)

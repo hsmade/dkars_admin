@@ -52,7 +52,7 @@ auth.define_tables(username=False, signature=False)
 
 ## configure email
 mail = auth.settings.mailer
-mail.settings.server = 'vps.dkars.nl:25'
+mail.settings.server = 'localhost:25'
 mail.settings.sender = 'dkcrobot@dkars.nl'
 
 ## configure auth policy
@@ -88,9 +88,11 @@ use_janrain(auth, filename='private/janrain.key')
 
 db.define_table('t_mail_forwards',
                 Field('f_call', 'string', label=T('Call')),
-                Field('f_first_name', 'string', label=T('First name')),
-                Field('f_last_name', 'string', label=T('Last name')),
+                # Field('f_first_name', 'string', label=T('First name')),
+                # Field('f_last_name', 'string', label=T('Last name')),
                 Field('f_destination_address', 'string', label=T('Destination e-mail address')),
                 Field('f_staff', 'boolean', label=T('Is staff member')),
                 Field('f_comment', 'string', label=T('Comment')),
+                Field('f_enabled', 'boolean', default=True, label=T('Enabled')),
                 plural='Mail forwards', singular='Mail forward')
+
