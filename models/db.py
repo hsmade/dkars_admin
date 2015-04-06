@@ -49,6 +49,9 @@ plugins = PluginManager()
 
 ## create all tables needed by auth if not custom tables
 auth.define_tables(username=False, signature=False)
+auth.settings.registration_requires_approval = True
+# disable registration:
+# auth.settings.actions_disabled.append('register')
 
 ## configure email
 mail = auth.settings.mailer
