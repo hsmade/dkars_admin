@@ -51,7 +51,7 @@ plugins = PluginManager()
 auth.define_tables(username=False, signature=False)
 auth.settings.registration_requires_approval = True
 # disable registration:
-# auth.settings.actions_disabled.append('register')
+auth.settings.actions_disabled.append('register')
 
 ## configure email
 mail = auth.settings.mailer
