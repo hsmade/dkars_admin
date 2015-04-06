@@ -1,0 +1,9 @@
+{{extend 'layout.html'}}
+<h1>DKARS mail admin page</h1>
+{{if response._vars['error']: }}
+    <p>
+        <b>An error occured processing the database, please contact ict@dkars.nl</b>
+        {{=BEAUTIFY(response._vars['error'])}}
+    </p>
+{{pass}}
+{{=BEAUTIFY(response._vars['form'])}}
